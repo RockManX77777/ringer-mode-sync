@@ -1,0 +1,63 @@
+# Gradle files
+.gradle/
+build/
+**/build/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.shelf/
+
+# Local configuration (sensitive or environment-specific)
+local.properties
+
+# Android Studio captures folder
+captures/
+
+# Folders related to Native Development Kit (NDK)
+.externalNativeBuild/
+.cxx/
+
+# Kotlin build cache
+.kotlin/
+
+# Android Studio Navigation editor files
+.navigation/
+
+# Log Files
+*.log
+*.hprof
+
+# Built application files (APKs, AABs, etc.)
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# macOS specific
+.DS_Store
+
+# Signing files
+*.jks
+*.keystore
+*.properties
+!gradle.properties
+
+# Service files (e.g., google-services.json if it contains secrets and is not checked in)
+**/google-services.json
+**/firebase_app_id.json
+
+# Secrets
+/secrets.xml
+/secrets.properties
+**/secrets.xml
+**/secrets.properties
+
+# Other
+/gradle/gradle-daemon-jvm.properties
+.pytest_cache/
+/release
+**/release
