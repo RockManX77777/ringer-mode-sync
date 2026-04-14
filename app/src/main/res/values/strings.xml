@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ringer Mode Sync</string>
+    <string name="sync_ringer_mode_to_wear">Sync Ringer Mode to Wear</string>
 </resources>

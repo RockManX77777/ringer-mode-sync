@@ -6,7 +6,10 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
+import com.google.android.gms.tasks.Tasks
+import com.google.android.gms.wearable.Wearable
 import com.joaomgcd.taskerpluginlibrary.action.TaskerPluginRunnerActionNoOutputOrInput
 import com.joaomgcd.taskerpluginlibrary.config.TaskerPluginConfig
 import com.joaomgcd.taskerpluginlibrary.config.TaskerPluginConfigHelperNoOutputOrInput
@@ -33,6 +36,7 @@ class ActivityConfigRingerModeChangedAction : Activity(), TaskerPluginConfigNoIn
 
 class RingerModeChangedActionRunner : TaskerPluginRunnerActionNoOutputOrInput() {
     override fun run(context: Context, input: TaskerInput<Unit>): TaskerPluginResult<Unit> {
+        Log.d("RingerModeSync", "RingerModeChangedActionRunner.run() called")
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val ringerModeText = when (audioManager.ringerMode) {
             AudioManager.RINGER_MODE_SILENT -> "Silent"
@@ -40,7 +44,22 @@ class RingerModeChangedActionRunner : TaskerPluginRunnerActionNoOutputOrInput() 
             AudioManager.RINGER_MODE_NORMAL -> "Normal"
             else -> "Unknown"
         }
+        Log.d("RingerModeSync", "Detected ringer mode: $ringerModeText")
         Handler(Looper.getMainLooper()).post { Toast.makeText(context, "Ringer Mode: $ringerModeText", Toast.LENGTH_LONG).show() }
+
+        Thread {
+            try {
+                val nodeList = Tasks.await(Wearable.getNodeClient(context).connectedNodes)
+                Log.d("RingerModeSync", "Found ${nodeList.size} connected nodes")
+                for (node in nodeList) {
+                    Wearable.getMessageClient(context).sendMessage(node.id, "/ringer_mode", ringerModeText.toByteArray())
+                    Log.d("RingerModeSync", "Sent message to node: ${node.displayName} (${node.id})")
+                }
+            } catch (e: Exception) {
+                Log.e("RingerModeSync", "Failed to send message to wear", e)
+            }
+        }.start()
+
         return TaskerPluginResultSucess()
     }
 }
