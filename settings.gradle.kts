@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Ringer Mode Sync"
 include(":app")
- 
+include(":wear")
