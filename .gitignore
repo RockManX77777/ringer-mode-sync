@@ -45,6 +45,7 @@ captures/
 *.keystore
 *.properties
 !gradle.properties
+!gradle-wrapper.properties
 
 # Service files (e.g., google-services.json if it contains secrets and is not checked in)
 **/google-services.json
