@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Ringer Mode Sync</string>
-    <string name="sync_ringer_mode_to_wear">Sync Ringer Mode to Wear</string>
     <string name="tasker_plugin_status">Tasker Plugin Status</string>
     <string name="disable_battery_optimizations">Disable Battery Optimizations (Required)</string>
     <string name="test_sync_to_wear">Test Sync to Wear</string>
     <string name="battery_optimization_toast">Please disable battery optimizations for this app to work with Tasker</string>
+    <string name="grant_dnd_access">Grant DND Access</string>
+    <string name="cannot_open_dnd_settings">Cannot open DND settings, permissions must be granted via adb</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="normal">Normal</string>
 </resources>

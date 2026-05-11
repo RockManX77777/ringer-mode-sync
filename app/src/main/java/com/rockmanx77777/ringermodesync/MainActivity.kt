@@ -3,7 +3,6 @@ package com.rockmanx77777.ringermodesync
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.core.net.toUri
 import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
@@ -64,9 +63,7 @@ class MainActivity : AppCompatActivity() {
         val batteryButton = Button(this).apply {
             setText(R.string.disable_battery_optimizations)
             setOnClickListener {
-                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                    data = "package:$packageName".toUri()
-                }
+                val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
                 startActivity(intent)
             }
         }

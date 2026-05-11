@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Ring Mode Sync</string>
-    <string name="hello_world">Hello, %1$s!</string>
+    <string name="grant_dnd_access">Grant DND Access</string>
+    <string name="cannot_open_dnd_settings">Cannot open DND settings, permissions must be granted via adb</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="normal">Normal</string>
 </resources>
